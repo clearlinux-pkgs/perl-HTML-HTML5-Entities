@@ -4,7 +4,7 @@
 #
 Name     : perl-HTML-HTML5-Entities
 Version  : 0.004
-Release  : 7
+Release  : 8
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Entities-0.004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Entities-0.004.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhtml-html5-entities-perl/libhtml-html5-entities-perl_0.004-1.debian.tar.xz
@@ -46,7 +46,7 @@ license components for the perl-HTML-HTML5-Entities package.
 cd ..
 %setup -q -T -D -n HTML-HTML5-Entities-0.004 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/HTML-HTML5-Entities-0.004/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/HTML-HTML5-Entities-0.004/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
