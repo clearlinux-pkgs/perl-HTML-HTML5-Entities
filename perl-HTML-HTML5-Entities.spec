@@ -4,11 +4,11 @@
 #
 Name     : perl-HTML-HTML5-Entities
 Version  : 0.004
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Entities-0.004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Entities-0.004.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhtml-html5-entities-perl/libhtml-html5-entities-perl_0.004-1.debian.tar.xz
-Summary  : 'drop-in replacement for HTML::Entities'
+Summary  : drop-in replacement for HTML::Entities
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-HTML-HTML5-Entities-license = %{version}-%{release}
@@ -28,6 +28,7 @@ print "$dec\n";   # fish & chips
 Summary: dev components for the perl-HTML-HTML5-Entities package.
 Group: Development
 Provides: perl-HTML-HTML5-Entities-devel = %{version}-%{release}
+Requires: perl-HTML-HTML5-Entities = %{version}-%{release}
 
 %description dev
 dev components for the perl-HTML-HTML5-Entities package.
