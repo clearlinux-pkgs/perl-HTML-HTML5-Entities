@@ -4,14 +4,15 @@
 #
 Name     : perl-HTML-HTML5-Entities
 Version  : 0.004
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Entities-0.004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Entities-0.004.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhtml-html5-entities-perl/libhtml-html5-entities-perl_0.004-1.debian.tar.xz
-Summary  : drop-in replacement for HTML::Entities
+Summary  : 'drop-in replacement for HTML::Entities'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-HTML-HTML5-Entities-license = %{version}-%{release}
+Requires: perl-HTML-HTML5-Entities-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -42,18 +43,28 @@ Group: Default
 license components for the perl-HTML-HTML5-Entities package.
 
 
+%package perl
+Summary: perl components for the perl-HTML-HTML5-Entities package.
+Group: Default
+Requires: perl-HTML-HTML5-Entities = %{version}-%{release}
+
+%description perl
+perl components for the perl-HTML-HTML5-Entities package.
+
+
 %prep
 %setup -q -n HTML-HTML5-Entities-0.004
-cd ..
-%setup -q -T -D -n HTML-HTML5-Entities-0.004 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libhtml-html5-entities-perl_0.004-1.debian.tar.xz
+cd %{_builddir}/HTML-HTML5-Entities-0.004
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/HTML-HTML5-Entities-0.004/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/HTML-HTML5-Entities-0.004/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -63,7 +74,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -72,9 +83,9 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-HTML-HTML5-Entities
-cp COPYRIGHT %{buildroot}/usr/share/package-licenses/perl-HTML-HTML5-Entities/COPYRIGHT
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-HTML-HTML5-Entities/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-HTML-HTML5-Entities/deblicense_copyright
+cp %{_builddir}/HTML-HTML5-Entities-0.004/COPYRIGHT %{buildroot}/usr/share/package-licenses/perl-HTML-HTML5-Entities/fe8305f6e0407ec483da7f3dc3579e9877d207ba
+cp %{_builddir}/HTML-HTML5-Entities-0.004/LICENSE %{buildroot}/usr/share/package-licenses/perl-HTML-HTML5-Entities/34f5e12514b91055de4b164a1f2327ef5c30ba53
+cp %{_builddir}/HTML-HTML5-Entities-0.004/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-HTML-HTML5-Entities/e926d13c344c3699392b67e066091c01ffec5087
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -87,7 +98,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/HTML/HTML5/Entities.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -95,6 +105,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-HTML-HTML5-Entities/COPYRIGHT
-/usr/share/package-licenses/perl-HTML-HTML5-Entities/LICENSE
-/usr/share/package-licenses/perl-HTML-HTML5-Entities/deblicense_copyright
+/usr/share/package-licenses/perl-HTML-HTML5-Entities/34f5e12514b91055de4b164a1f2327ef5c30ba53
+/usr/share/package-licenses/perl-HTML-HTML5-Entities/e926d13c344c3699392b67e066091c01ffec5087
+/usr/share/package-licenses/perl-HTML-HTML5-Entities/fe8305f6e0407ec483da7f3dc3579e9877d207ba
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/HTML/HTML5/Entities.pm
