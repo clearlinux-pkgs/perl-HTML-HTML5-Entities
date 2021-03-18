@@ -4,7 +4,7 @@
 #
 Name     : perl-HTML-HTML5-Entities
 Version  : 0.004
-Release  : 16
+Release  : 17
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Entities-0.004.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Entities-0.004.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhtml-html5-entities-perl/libhtml-html5-entities-perl_0.004-1.debian.tar.xz
@@ -111,4 +111,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/HTML/HTML5/Entities.pm
+/usr/lib/perl5/vendor_perl/5.32.1/HTML/HTML5/Entities.pm
